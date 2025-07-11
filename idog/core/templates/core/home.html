@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>PETPAL where every pet lives in a better world</h2>
+    <p class="h22">Everything your pets needs from expert vet care to premium pet products</p>
+    
+    <div class="tevile"><img src="{% static '/images/cute-animals-group600-background.png' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a  href="{% url 'accounts:register' %}"><button >Signup</button></a>
+        <a href="{% url 'lost_pets:list' %}"><button class="Signup">Lost Pets</button></a>
+    </div>
+    <p class="h32">Create a secure QR code for your pet’s collar to store owner and health info. If lost, activate the "Lost Pet" feature so others can contact you easily.</p>
+    <div class="tevile"><img src="{% static '/images/71ucz0-WRPL._AC_-1483564980.jpg' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a  href="{% url 'accounts:register' %}"><button >Add your pet</button></a>
+        <a href="{% url 'lost_pets:list' %}"><button class="Signup2">Find Pets</button></a>
+    </div>
+    <p class="h32">Easily book grooming services—from baths to nail trims and stylish cuts with gentle care tailored to your pet. Keep them healthy and looking great!</p>
+    <div class="tevile"><img src="{% static '/images/beautiful-pet-portrait-dog__1_-removebg-preview.png' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a href="{% url 'pet_grooming:dashboard' %}"><button class="grooming-book">Book Grooming</button></a>
+    </div>
+        <p class="h32">Get expert veterinary care for your pet—from check-ups to emergency treatments. Keep your pet healthy and happy with easy appointment booking.</p>
+    <div class="tevile"><img src="{% static '/images/front_view_female_veterinarian_observing_little_dog_yellow_wall (1).png' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a href="{% url 'vet_clinic:book_appointment' %}"><button class="vet-book">Book Vet Visit</button></a>
+    </div>
+    <p class="h32">Safe, cozy boarding for your pet with daily care and playtime. Book their stay with confidence.</p>
+    <div class="tevile"><img src="{% static '/images/2002.i126.01.png' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a href="{% url 'pet_boarding:dashboard' %}"><button class="boarding-book">Book Pet Boarding</button></a>
+    </div>
+    <p class="h32">Discover premium pet food, toys, and accessories—all carefully selected for your pet’s happiness and health. Shop conveniently in one place.</p>
+    <div class="tevile"><img src="{% static '/images/Picsart_25-07-02_22-29-57-775.png' %}" alt="PetPal Logo" class="logo"></div>
+    <div class="action-buttons">
+        <a href="{% url 'pet_store:dashboard' %}"><button class="Petstore">Shop Now</button></a>
+    </div>
+
+
+    <h3>Pet Store</h3>
+    <ul class="list">
+        {% for store in stores %}
+            <li>
+                <a href="{% url 'pet_store:store_detail' store.id %}">
+                    {% if store.photo %}
+                        <img src="{{ store.photo.url }}" alt="{{ store.name }}" class="logo-img">
+                    {% else %}
+                        <img src="{% static 'images/default_store.png' %}" alt="Default Store" class="logo-img">
+                    {% endif %}
+                    <h4>{{ store.name }}</h4>
+                    <p>{{ store.address }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <li>no shops.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Products</h3>
+    <ul class="list">
+        {% for product in products %}
+            <li>
+                {% if product.photo %}
+                    <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="product-photo">
+                {% else %}
+                    <img src="{% static 'images/default_product.png' %}" alt="Default Product" class="product-photo">
+                {% endif %}
+                <h4>{{ product.name }}</h4>
+                <p>Category: {{ product.category }}</p>
+                <p>Price: {{ product.price }} USD</p>
+                <p>Great For: {{ product.supported_animals }}</p>
+            </li>
+        {% empty %}
+            <li>no Products</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Veterinary Clinic</h3>
+    <ul class="list">
+        {% for clinic in vet_clinics %}
+            <li>
+                <a href="{% url 'vet_clinic:clinic_detail' clinic.id %}">
+                    {% if clinic.photo %}
+                        <img src="{{ clinic.photo.url }}" alt="{{ clinic.name }}" class="logo-img">
+                    {% else %}
+                        <img src="{% static 'images/default_clinic.png' %}" alt="Default Clinic" class="logo-img">
+                    {% endif %}
+                    <h4>{{ clinic.name }}</h4>
+                    <p>{{ clinic.address }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <li>Veterinary Clinic</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Pet Boarding</h3>
+    <ul class="list">
+        {% for boarding in boardings %}
+            <li>
+                <a href="{% url 'pet_boarding:boarding_detail' boarding.id %}">
+                    {% if boarding.photo %}
+                        <img src="{{ boarding.photo.url }}" alt="{{ boarding.name }}" class="logo-img">
+                    {% else %}
+                        <img src="{% static 'images/default_boarding.png' %}" alt="Default Boarding" class="logo-img">
+                    {% endif %}
+                    <h4>{{ boarding.name }}</h4>
+                    <p>{{ boarding.address }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <li>no Pet Boarding</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Pet Grooming</h3>
+    <ul class="list">
+        {% for grooming in groomings %}
+            <li>
+                <a href="{% url 'pet_grooming:grooming_detail' grooming.id %}">
+                    {% if grooming.photo %}
+                        <img src="{{ grooming.photo.url }}" alt="{{ grooming.name }}" class="logo-img">
+                    {% else %}
+                        <img src="{% static 'images/default_grooming.png' %}" alt="Default Grooming" class="logo-img">
+                    {% endif %}
+                    <h4>{{ grooming.name }}</h4>
+                    <p>{{ grooming.services }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <li>No Pet Grooming</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

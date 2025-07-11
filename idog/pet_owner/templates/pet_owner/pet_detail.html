@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>Pet Details {{ pet.name }}</h2>
+    {% if pet.photo %}
+        <img src="{{ pet.photo.url }}" alt="{{ pet.name }}" class="pet-photo">
+    {% else %}
+        <img src="{% static 'images/default_pet.png' %}" alt="Default Pet" class="pet-photo">
+    {% endif %}
+    <p>Species: {{ pet.species }}</p>
+    <p>Breed: {{ pet.breed }}</p>
+    <p>Color: {{ pet.color }}</p>
+    <p>Owner: {{ pet.owner.username }}</p>
+    <a href="{% url 'pet_owner:view_qr_code' pet.id %}"><button>Show QR Code</button></a>
+    <a href="{% url 'pet_owner:dashboard' %}"><button>Back to Dashboard</button></a>
+</div>
+{% endblock %}
+
+
+

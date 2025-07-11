@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>QR code for{{ pet.name }}</h2>
+    {% if pet.qr_code %}
+        <img src="{{ pet.qr_code.url }}" alt="QR Code for {{ pet.name }}" class="qr-code-img">
+        <p>This QR code displays your contact information and your pet name.</p>
+        <a href="{% url 'pet_owner:dashboard' %}"><button> Back To Dashboard </button></a>
+    {% else %}
+        <p>Enable the QR code in the pet in formation edit form.</p>
+        <a href="{% url 'pet_owner:edit_pet' pet.id %}"><button>Edit Pet Information</button></a>
+    {% endif %}
+</div>
+{% endblock %}

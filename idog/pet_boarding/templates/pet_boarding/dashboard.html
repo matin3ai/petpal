@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Boarding Dashboard</h2>
+<a href="{% url 'pet_boarding:update_boarding' %}">Edit Boarding Information</a>
+<p>{{ boarding.name }} - Capacity: {{ boarding.capacity }}</p>
+{% endblock %}

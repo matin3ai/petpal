@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2> Store Dashboard: {{ store.name }}</h2>
+    {% if store.photo %}
+        <img src="{{ store.photo.url }}" alt="{{ store.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_store.png' %}" alt="Default Store" class="logo-img">
+    {% endif %}
+    <p>{{ store.address }} | {{ store.contact_info }}</p>
+    <a href="{% url 'pet_store:update_store' %}"><button> Edit Store Information </button></a>
+    <a href="{% url 'pet_store:add_product' %}"><button>Add Product </button></a>
+    <h3>Your Product</h3>
+    <ul class="list">
+        {% for product in products %}
+            <li>
+                {% if product.photo %}
+                    <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="product-photo">
+                {% else %}
+                    <img src="{% static 'images/default_product.png' %}" alt="Default Product" class="product-photo">
+                {% endif %}
+                {{ product.name }} - {{ product.category }} - {{ product.price }} USD
+                <p> Great For: {{ product.supported_animals }}</p>
+                <div>
+                    <a href="{% url 'pet_store:edit_product' product.id %}">Edit</a> |
+                    <a href="{% url 'pet_store:delete_product' product.id %}">Remove</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>no products have been added yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+Business Source License 1.1
+
+Licensor: Boof Abi Parseh
+Licensed Work: The source code and all files in this repository
+
+The Licensed Work is provided under the Business Source License, Version 1.1 ("BSL"), and the following additional terms:
+
+1. **Usage Limitations:**
+   You may use, copy, modify, and distribute the Licensed Work, but only for non-commercial purposes. Commercial use of any kind, including use as part of a proprietary product or as a service, is prohibited without a commercial license from the Licensor.
+
+2. **Change Date:**
+   The Change Date is **2030-07-11** (five years from today). After this date, the Licensed Work will be automatically re-licensed under the Apache License, Version 2.0.
+
+3. **Commercial Use:**
+   Any commercial use of this software prior to the Change Date requires a commercial license. Please contact the Licensor to obtain a commercial license.
+
+4. **Disclaimer:**
+   THE LICENSED WORK IS PROVIDED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+For more information or to obtain a commercial license, please contact: **matin.alijani@gmail.com**
+
+Full BSL license text is available at: https://mariadb.com/bsl11

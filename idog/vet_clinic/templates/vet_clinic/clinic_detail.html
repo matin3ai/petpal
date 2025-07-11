@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>{{ clinic.name }}</h2>
+    {% if clinic.photo %}
+        <img src="{{ clinic.photo.url }}" alt="{{ clinic.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_clinic.png' %}" alt="Default Clinic" class="logo-img">
+    {% endif %}
+    <p><strong>Address:</strong> {{ clinic.address }}</p>
+    <p><strong>Phone:</strong> {{ clinic.contact_info }}</p>
+    <p><strong>Veterinary License:</strong> {{ clinic.license_number }}</p>
+    <p><strong>Working Hours:</strong> {{ clinic.working_hours }}</p>
+    <p><strong>Services:</strong> {{ clinic.services }}</p>
+    <p><strong>Supported Pet:</strong> {{ clinic.supported_animals }}</p>
+    <a href="{% url 'vet_clinic:book_appointment' %}"><button>Book Appointment</button></a>
+    <a href="{% url 'home' %}"><button>Book Appointment</button></a>
+</div>
+{% endblock %}

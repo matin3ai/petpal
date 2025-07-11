@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>{{ grooming.name }}</h2>
+    {% if grooming.photo %}
+        <img src="{{ grooming.photo.url }}" alt="{{ grooming.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_grooming.png' %}" alt="Default Grooming" class="logo-img">
+    {% endif %}
+    <p><strong>Address:</strong> {{ grooming.address }}</p>
+    <p><strong>Phone:</strong> {{ grooming.contact_info }}</p>
+    <p><strong>Services:</strong> {{ grooming.services }}</p>
+    <p><strong>Supported Pet Types</strong> {{ grooming.supported_animals }}</p>
+    <p><strong>Pricing:</strong> {{ grooming.pricing }}</p>
+    <p><strong>Working Hours:</strong> {{ grooming.working_hours }}</p>
+    <a href="{% url 'home' %}"><button>Back To Home</button></a>
+</div>
+{% endblock %}

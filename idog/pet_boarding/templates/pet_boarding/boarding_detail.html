@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>{{ boarding.name }}</h2>
+    {% if boarding.photo %}
+        <img src="{{ boarding.photo.url }}" alt="{{ boarding.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_boarding.png' %}" alt="Default Boarding" class="logo-img">
+    {% endif %}
+    <p><strong>Address:</strong> {{ boarding.address }}</p>
+    <p><strong>Phone:</strong> {{ boarding.contact_info }}</p>
+    <p><strong>Services:</strong> {{ boarding.services }}</p>
+    <p><strong>Supported Pet Types:</strong> {{ boarding.supported_animals }}</p>
+    <a href="{% url 'home' %}"><button>Back to home</button></a>
+</div>
+{% endblock %}

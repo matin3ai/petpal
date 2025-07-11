@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+<video autoplay muted loop id="bg-video">
+    <source src="{% static '/images/cc9176d8a319e2f2a23e5e2e2ae3a033_t4.mp4' %}" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+{% endblock %}

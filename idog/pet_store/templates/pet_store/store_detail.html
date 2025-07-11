@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>{{ store.name }}</h2>
+    {% if store.photo %}
+        <img src="{{ store.photo.url }}" alt="{{ store.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_store.png' %}" alt="Default Store" class="logo-img">
+    {% endif %}
+    <p><strong>Address:</strong> {{ store.address }}</p>
+    <p><strong>Phone:</strong> {{ store.contact_info }}</p>
+    <p><strong>Supported Pet :</strong> {{ store.supported_animals }}</p>
+    <h3>Products</h3>
+    <ul class="list">
+        {% for product in products %}
+            <li>
+                {% if product.photo %}
+                    <img src="{{ product.photo.url }}" alt="{{ product.name }}" class="product-photo">
+                {% else %}
+                    <img src="{% static 'images/default_product.png' %}" alt="Default Product" class="product-photo">
+                {% endif %}
+                <h4>{{ product.name }}</h4>
+                <p>Category: {{ product.category }}</p>
+                <p>Price: {{ product.price }} USD</p>
+                <p> Great For: {{ product.supported_animals }}</p>
+            </li>
+        {% empty %}
+            <li>No products have been added yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}"><button>Back To Home/button></a>
+</div>
+{% endblock %}

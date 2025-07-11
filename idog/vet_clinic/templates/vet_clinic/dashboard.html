@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>Veterinary Dashboard {{ clinic.name }}</h2>
+    {% if clinic.photo %}
+        <img src="{{ clinic.photo.url }}" alt="{{ clinic.name }}" class="logo-img">
+    {% else %}
+        <img src="{% static 'images/default_clinic.png' %}" alt="Default Clinic" class="logo-img">
+    {% endif %}
+    <a href="{% url 'vet_clinic:update_clinic' %}"><button> Edit Veterinary Information </button></a>
+    <h3>Appointment</h3>
+    <ul class="list">
+        {% for appointment in appointments %}
+            <li>
+                {{ appointment.pet.name }} - {{ appointment.date|date:"Y-m-d H:i" }} - {{ appointment.status }}
+                <div>
+                    <a href="{% url 'vet_clinic:confirm_appointment' appointment.id %}">Confirm</a> |
+                    <a href="{% url 'vet_clinic:cancel_appointment' appointment.id %}">Cancel</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>No active appointment available</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

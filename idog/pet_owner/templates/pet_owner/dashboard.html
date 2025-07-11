@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>Pet Owner Dashboard</h2>
+    <a href="{% url 'pet_owner:add_pet' %}"><button>Add Pet</button></a>
+    <h3>Your Pets</h3>
+    <ul class="list">
+        {% for pet in pets %}
+            <li>
+                {% if pet.photo %}
+                    <img src="{{ pet.photo.url }}" alt="{{ pet.name }}" class="pet-photo">
+                {% else %}
+                    <img src="{% static 'images/default_pet.png' %}" alt="Default Pet" class="pet-photo">
+                {% endif %}
+                <h4>{{ pet.name }}</h4>
+                <p>Species: {{ pet.species }} | Breed: {{ pet.breed }}</p>
+                <p>Color: {{ pet.color }}</p>
+                <a href="{% url 'pet_owner:edit_pet' pet.id %}">Edit</a>
+                <a href="{% url 'pet_owner:view_qr_code' pet.id %}"><img src="{% url 'pet_owner:view_qr_code' pet.id %}" alt="QR Code for {{ pet.name }}" class="qr-code-img"></a>
+                <img src="{% url 'pet_owner:view_qr_code' pet.id %}?format=image" alt="QR Code for {{ pet.name }}" class="qr-code-img">
+                <a href="{% url 'lost_pets:add' %}">Report Lost Pet</a>
+            </li>
+        {% empty %}
+            <li>No lost pets found.</li>
+        {% endfor %}
+    </ul>
+    <h3>Your Appointment</h3>
+    <ul class="list">
+        {% for appointment in appointments %}
+            <li>
+                <p>Veteinary Clinic: {{ appointment.vet_clinic.name }}</p>
+                <p>Pet: {{ appointment.pet.name }}</p>
+                <p>Date: {{ appointment.date }}</p>
+                <p>Status: {{ appointment.get_status_display }}</p>
+            </li>
+        {% empty %}
+            <li>No appointment.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

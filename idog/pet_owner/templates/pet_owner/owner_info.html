@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>Pet Owner {{ pet.name }}</h2>
+    <div class="owner-info">
+        {% if pet.photo %}
+            <img src="{{ pet.photo.url }}" alt="{{ pet.name }}" class="pet-photo">
+        {% else %}
+            <img src="{% static 'images/default_pet.png' %}" alt="Default Pet" class="pet-photo">
+        {% endif %}
+        <p><strong>Pet name:</strong> {{ pet.name }}</p>
+        <p><strong>Species:</strong> {{ pet.species }}</p>
+        <p><strong>Breed:</strong> {{ pet.breed }}</p>
+        <p><strong>Color:</strong> {{ pet.color }}</p>
+        <h3>Owner Detail</h3>
+        <p><strong>Name:</strong> {{ owner.username }}</p>
+        <p><strong>Email:</strong> {{ owner.email }}</p>
+        {% if owner.phone_number %}
+            <p><strong>Phone Number:</strong> {{ owner.phone_number }}</p>
+        {% else %}
+            <p><strong>Phone Number:</strong> Not registered </p>
+        {% endif %}
+        <a href="{% url 'pet_owner:dashboard' %}"><button> Back to dashboard </button></a>
+    </div>
+</div>
+{% endblock %}

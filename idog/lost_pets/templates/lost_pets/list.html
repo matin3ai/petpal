@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard">
+    <h2>Lost Pets</h2>
+    <a href="{% url 'lost_pets:add' %}"><button>Report Lost Pet</button></a>
+    <ul class="list">
+        {% for lost_pet in lost_pets %}
+            <li>
+                {% if lost_pet.photo %}
+                    <img src="{{ lost_pet.photo.url }}" alt="{{ lost_pet.pet.name }}" class="pet-photo">
+                {% elif lost_pet.pet.photo %}
+                    <img src="{{ lost_pet.pet.photo.url }}" alt="{{ lost_pet.pet.name }}" class="pet-photo">
+                {% else %}
+                    <img src="{% static 'images/default_pet.png' %}" alt="Default Pet" class="pet-photo">
+                {% endif %}
+                <h3>{{ lost_pet.pet.name }}</h3>
+                <p>Species: {{ lost_pet.pet.species }} | Breed: {{ lost_pet.pet.breed }}</p>
+                <p>color: {{ lost_pet.pet.color }}</p>
+                <p>Last Seen Location: {{ lost_pet.last_seen }}</p>
+                <p>Date Lost: {{ lost_pet.date_lost|default:"unknown" }}</p>
+                <p>Description: {{ lost_pet.description|truncatewords:20 }}</p>
+            </li>
+        {% empty %}
+            <li>No lost pets found..</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
